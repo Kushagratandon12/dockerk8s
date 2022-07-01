@@ -28,9 +28,6 @@ spec:
         app: sba-frontend
     spec:
       containers:
-      - env:
-        - name: REACT_APP_API_URL
-          value: https://scbcepb3u15-app.brainupgrade.net/api/
       - image: kushagratandon12/smart_bank_fronend:nginx
         name: sba-frontend
         imagePullPolicy: Always
