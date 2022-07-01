@@ -1,30 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: facebook-v1
+  name: sba-frontend-v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: facebook
+      app: sba-frontend
       release: v1
   template:
     metadata:
       labels:
-        app: facebook
+        app: sba-frontend
         release: v1
     spec:
       containers:
-      - image: gcr.io/google-samples/hello-app:1.0
+      - image: kushagratandon12/smart_bank_fronend:nginx
         imagePullPolicy: IfNotPresent
-        name: facebook-app
+        name: sba-frontend-app
         ports:
-        - containerPort: 8080
-          protocol: TCP
-        resources: 
-          limits:
-            cpu: 20m
-            memory: 50Mi
-          requests:
-            cpu: 20m
-            memory: 50Mi  
+        - containerPort: 80
+          name: nginx
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: ambassador-nginx-config 
