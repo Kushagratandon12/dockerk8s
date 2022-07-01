@@ -24,4 +24,7 @@ spec:
       - image: brainupgrade/sba-apiserver:1.0.0
         name: sba-apiserver
         resources: {}
+      - port: 80
+        protocol: TCP
+        targetPort: 8080
 status: {}
