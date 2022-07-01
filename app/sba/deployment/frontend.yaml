@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - env:
+        - name: REACT_APP_API_URL
+          value: https://scbcepb3u15-app.brainupgrade.net/api/
+      - image: kushagratandon12/smart_bank_fronend:v2
+        name: sba-frontend
+        resources: {}
+status: {}
